@@ -60,8 +60,6 @@ def start_monitor():
 
         if normalized:
             increment_key(normalized)
-            print(f"{normalized} + 1")
-
 
     with keyboard.Listener(on_press=on_press) as listener:
         listener.join()

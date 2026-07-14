@@ -138,6 +138,7 @@ def stats():
     console.print(table)
 
 
+
 @app.command()
 def press(key: str):
     """Simulate a key press."""
@@ -145,6 +146,8 @@ def press(key: str):
     key = key.upper()
 
     increment_key(key)
+
+
 
 @app.command()
 def reset():
