@@ -1,6 +1,7 @@
 # KeyGlow
-[!License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)[https://opensource.org/licenses/MIT]
-ATTENTION: PROJECT IS NOT READY YET, SO TRYING TO DOWNLOAD IT FROM PIP WILL RESULT IN FAILURE.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+> ATTENTION: PROJECT IS NOT READY YET.  
+> Installing from PyPI will currently fail because KeyGlow has not been published yet.
 
 Privacy-first keyboard usage heatmap and statistics CLI tool.
 
