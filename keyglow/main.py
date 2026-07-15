@@ -241,7 +241,7 @@ def man():
 [bold red]USAGE[/bold red]
 
   [bold yellow]keyglow[/bold yellow] [COMMAND]
-
+          
 
 [bold red]COMMANDS[/bold red]
 
@@ -262,6 +262,8 @@ def man():
   [bold cyan]reset[/bold cyan]         Reset all collected data.
 
   [bold cyan]--help[/bold cyan]        Show command help.
+          
+  [bold cyan]joke[/bold cyan]          Show a random keyboard joke.
 
 
 [bold red]FILES[/bold red]

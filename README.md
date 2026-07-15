@@ -187,6 +187,14 @@ Display the KeyGlow manual.
 keyglow man
 ```
 
+## joke
+
+Display a random (really funny trust me) joke about keyboard.
+
+```bash
+keyglow joke
+```
+
 # Privacy Model
 
 KeyGlow was designed with privacy as a priority.
@@ -287,6 +295,7 @@ keyglow/
     - map.py
     - keyboard.py
     - data.py
+    - joke.py
 ```
 
 # Development
