@@ -195,6 +195,14 @@ Display a random (really funny trust me) joke about keyboard.
 keyglow joke
 ```
 
+## info
+
+Show informations about the version, amount of stored keys, total key presses, storage file size and path to export folder.
+
+```bash
+keyglow info
+```
+
 # Privacy Model
 
 KeyGlow was designed with privacy as a priority.

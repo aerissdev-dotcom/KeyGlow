@@ -267,6 +267,8 @@ def man():
   [bold cyan]--help[/bold cyan]        Show command help.
           
   [bold cyan]joke[/bold cyan]          Show a random keyboard joke.
+          
+  [bold cyan]info[/bold cyan]          Show informations about the version, amount of stored keys, total key presses, storage file size and path to export folder.
 
 
 [bold red]FILES[/bold red]
