@@ -8,17 +8,14 @@ from keyglow.storage import load_data, save_data, reset_data
 from keyglow.monitor import start_monitor
 from keyglow.map import show_map
 from keyglow.export import export_json, export_csv, export_txt
-
+from keyglow.jokes import get_joke
 
 app = typer.Typer(
     name="keyglow",
     help="Privacy-first, useful and fun keyboard usage heatmap."
 )
 
-
 console = Console()
-
-
 
 def get_color(presses):
 
@@ -336,12 +333,19 @@ def export(
         )
 
         raise typer.Exit()
-
-
-
+    
     print(
         f"[bold cyan]Export completed:[/bold cyan] {file}"
     )
+
+@app.command()
+def joke():
+    """Show a random keyboard joke."""
+    print(f"""
+[bold cyan]KeyGlow Joke[/bold cyan]
+          
+{get_joke()}
+""")
 
 if __name__ == "__main__":
     app()
