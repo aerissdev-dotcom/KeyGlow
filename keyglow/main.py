@@ -142,24 +142,6 @@ def stats():
 
     console.print(table)
 
-
-
-@app.command()
-def press(key: str):
-    """Simulate a key press."""
-
-    key = key.upper()
-
-    data = load_data()
-
-
-    if key not in data:
-        data[key] = 0
-
-
-    data[key] += 1
-    save_data(data)
-
 @app.command()
 def reset(force: bool = typer.Option(False, "--force", "-f", help="Skip confirmation and reset immediately.")):
     """Reset all KeyGlow data."""
@@ -188,8 +170,6 @@ def map():
     """Show keyboard heatmap."""
 
     show_map()
-
-
 
 @app.command()
 def total():
@@ -384,6 +364,10 @@ def info():
     table.add_row("Export folder", str(export_folder))
 
     console.print(table)
+
+# @app.command()
+# def test():
+
 
 if __name__ == "__main__":
     app()
