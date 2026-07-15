@@ -9,11 +9,21 @@ from keyglow.monitor import start_monitor
 from keyglow.map import show_map
 from keyglow.export import export_json, export_csv, export_txt
 from keyglow.jokes import get_joke
+from pathlib import Path
+
+def version_callback(value: bool):
+    if value:
+        print("KeyGlow v0.1.0")
+        raise typer.Exit()
 
 app = typer.Typer(
     name="keyglow",
     help="Privacy-first, useful and fun keyboard usage heatmap."
 )
+
+@app.callback()
+def main(version: bool = typer.Option(None, "--version", "-v", callback=version_callback, is_eager=True, help="Show KeyGlow version.")):
+    pass
 
 console = Console()
 
@@ -172,8 +182,6 @@ def monitor(timeout: int = typer.Option(10, "--timeout", "-t", min = 0, help="Au
     """Start KeyGlow keyboard monitoring."""
 
     start_monitor(idle_timeout=timeout)
-
-
 
 @app.command()
 def map():
@@ -343,6 +351,37 @@ def joke():
           
 {get_joke()}
 """)
+
+@app.command()
+def info():
+    """Show KeyGlow information and statistics."""
+
+    data = load_data()
+    data_file = Path.home() / "KeyGlow" / "keyglow_data.json"
+    export_folder = Path.home() / "KeyGlow" / "Exports"
+
+    stored_keys = len(data)
+    total_presses = sum(data.values())
+
+    if data_file.exists():
+        size_bytes = data_file.stat().st_size
+        if size_bytes < 1024:
+            database_size = f"{size_bytes} B"
+        else:
+            database_size = f"{size_bytes / 1024:.1f} KB"
+    else:
+        database_size = "0 B"
+    
+    table = Table(title = "KeyGlow Information", border_style="#38BDF8")
+    table.add_column("Property")
+    table.add_column("Value", justify="right")
+    table.add_row("Version", "0.1.0")
+    table.add_row("Stored keys", str(stored_keys))
+    table.add_row("Total presses", f"{total_presses:,}")
+    table.add_row("Database size", database_size)
+    table.add_row("Export folder", str(export_folder))
+
+    console.print(table)
 
 if __name__ == "__main__":
     app()

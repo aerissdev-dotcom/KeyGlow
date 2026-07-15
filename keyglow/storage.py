@@ -2,10 +2,19 @@ import json
 from pathlib import Path
 
 
-DATA_FILE = Path("keyglow_data.json")
+KEYGLOW_DIR = Path.home() / "KeyGlow"
+
+DATA_FILE = KEYGLOW_DIR / "keyglow_data.json"
+
 
 
 def save_data(data):
+
+    KEYGLOW_DIR.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
     with open(
         DATA_FILE,
         "w",
@@ -19,6 +28,7 @@ def save_data(data):
         )
 
 
+
 def load_data():
 
     if not DATA_FILE.exists():
@@ -30,9 +40,7 @@ def load_data():
         encoding="utf-8"
     ) as file:
         return json.load(file)
-
-
-
+    
 def reset_data():
 
     if DATA_FILE.exists():
