@@ -63,6 +63,7 @@ def normalize_key(key):
 def start_monitor(idle_timeout=10):
 
     print("KeyGlow monitor started...")
+    print("If keyboard tracking does not work, check Accessibility permissions in settings.")
     print("Press CTRL+C to stop.")
 
 
@@ -71,16 +72,12 @@ def start_monitor(idle_timeout=10):
     last_activity = time.time()
     running = True
 
-
-
     def autosave():
 
         while running:
 
             time.sleep(5)
             save_data(data)
-
-
 
     threading.Thread(
         target=autosave,

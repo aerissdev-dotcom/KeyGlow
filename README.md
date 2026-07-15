@@ -346,6 +346,26 @@ https://github.com/aerissdev-dotcom
 
 KeyGlow was fully tested and developed on macOS. The author does **not** guarantee this tool will work on other operating systems.
 
+# OS Compatibility
+
+## macOS
+
+KeyGlow requires Accessibility permission.
+
+System Settings:
+Privacy & Security → Accessibility
+
+Add your Terminal application.
+
+## Windows
+
+No additional permissions are normally required.
+
+## Linux
+
+Works best on X11 sessions.
+Wayland sessions may require additional configuration due to system restrictions.
+
 # Conclusion
 
 It's a free, silly little tool that might brighten someone's day, and for some specific people, give interesting statistics.
