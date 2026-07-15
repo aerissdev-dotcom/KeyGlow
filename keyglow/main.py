@@ -151,25 +151,20 @@ def press(key: str):
     save_data(data)
 
 @app.command()
-def reset():
+def reset(force: bool = typer.Option(False, "--force", "-f", help="Skip confirmation and reset immediately.")):
     """Reset all KeyGlow data."""
 
-    confirm = typer.confirm(
-        "Are you sure you want to delete all KeyGlow data?"
-    )
+    if not force:
+        confirm = typer.confirm("Are you sure you want to delete all KeyGlow data?")
+    
+        if not confirm:
+            print("[bold yellow]Reset cancelled.[/bold yellow]")
+            raise typer.Exit()
+        
+    reset_data()
 
-
-    if confirm:
-
-        reset_data()
-
-        print(
-            "[bold green]KeyGlow data reset.[/bold green]"
-        )
-
-    else:
-        print(
-            "[yellow]Reset cancelled.[/yellow]"
+    print(
+        "[bold green]KeyGlow data reset.[/bold green]"
         )
 
 @app.command()
