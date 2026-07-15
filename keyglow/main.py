@@ -4,14 +4,10 @@ from rich import print
 from rich.table import Table
 from rich.console import Console
 
-from keyglow.storage import (
-    load_data,
-    increment_key,
-    reset_data
-)
-
+from keyglow.storage import load_data, save_data, reset_data
 from keyglow.monitor import start_monitor
 from keyglow.map import show_map
+from keyglow.export import export_json, export_csv, export_txt
 
 
 app = typer.Typer(
@@ -23,24 +19,25 @@ app = typer.Typer(
 console = Console()
 
 
+
 def get_color(presses):
 
     if presses == 0:
-        return "#4B5563"  # dark gray
+        return "#4B5563"
 
     if presses < 10:
-        return "#22C55E"  # green
+        return "#22C55E"
 
     if presses < 50:
-        return "#166534"  # dark green
+        return "#166534"
 
     if presses < 200:
-        return "#EAB308"  # yellow
+        return "#EAB308"
 
     if presses < 500:
-        return "#F97316"  # orange
+        return "#F97316"
 
-    return "#B91C1C"      # dark red
+    return "#B91C1C"
 
 
 
@@ -58,6 +55,7 @@ def get_bar(presses):
     )
 
 
+
 @app.command()
 def version():
     """Show KeyGlow version."""
@@ -71,7 +69,7 @@ def privacy():
     """Explain KeyGlow Privacy Model."""
 
     print("""
-[bold]KeyGlow Privacy Model[/bold]
+[bold cyan]KeyGlow Privacy Model[/bold cyan]
 
 Collected:
     [green][+][/green] Key frequency counters
@@ -145,27 +143,43 @@ def press(key: str):
 
     key = key.upper()
 
-    increment_key(key)
+    data = load_data()
 
 
+    if key not in data:
+        data[key] = 0
+
+
+    data[key] += 1
+    save_data(data)
 
 @app.command()
 def reset():
     """Reset all KeyGlow data."""
 
-    reset_data()
-
-    print(
-        "KeyGlow data reset."
+    confirm = typer.confirm(
+        "Are you sure you want to delete all KeyGlow data?"
     )
 
 
+    if confirm:
+
+        reset_data()
+
+        print(
+            "[bold green]KeyGlow data reset.[/bold green]"
+        )
+
+    else:
+        print(
+            "[yellow]Reset cancelled.[/yellow]"
+        )
 
 @app.command()
-def monitor():
+def monitor(timeout: int = typer.Option(10, "--timeout", "-t", min = 0, help="Automatically stop monitoring after X minutes of inactivity (0 = disabled)")):
     """Start KeyGlow keyboard monitoring."""
 
-    start_monitor()
+    start_monitor(idle_timeout=timeout)
 
 
 
@@ -175,20 +189,159 @@ def map():
 
     show_map()
 
+
+
 @app.command()
 def total():
     """Show total key presses."""
 
     data = load_data()
-    total_presses = sum(data.values())
 
-    table = Table(title = "KeyGlow Total Key Presses", border_style="#38BDF8")
-    table.add_column("Statistic")
-    table.add_column("Value", justify="right")
+    total_presses = sum(
+        data.values()
+    )
 
-    table.add_row("Total Presses", f"[bold #38BDF8]{total_presses:,}[/bold #38BDF8]")
+
+    table = Table(
+        title="KeyGlow Total Key Presses",
+        border_style="#38BDF8"
+    )
+
+
+    table.add_column(
+        "Statistic"
+    )
+
+    table.add_column(
+        "Value",
+        justify="right"
+    )
+
+
+    table.add_row(
+        "Total Presses",
+        f"[bold #38BDF8]{total_presses:,}[/bold #38BDF8]"
+    )
+
 
     console.print(table)
+
+
+
+@app.command()
+def man():
+    """Show the KeyGlow manual."""
+
+    print("""
+[bold cyan]KeyGlow Manual[/bold cyan]
+
+
+[bold red]NAME[/bold red]
+
+  [bold yellow]KeyGlow[/bold yellow] - Privacy-first keyboard usage heatmap.
+
+
+[bold red]USAGE[/bold red]
+
+  [bold yellow]keyglow[/bold yellow] [COMMAND]
+
+
+[bold red]COMMANDS[/bold red]
+
+  [bold cyan]version[/bold cyan]       Show KeyGlow version.
+
+  [bold cyan]privacy[/bold cyan]       Explain the privacy model.
+
+  [bold cyan]monitor[/bold cyan]       Start keyboard monitoring.
+
+  [bold cyan]stats[/bold cyan]         Show keyboard statistics.
+
+  [bold cyan]map[/bold cyan]           Display the keyboard heatmap.
+
+  [bold cyan]total[/bold cyan]         Show total recorded key presses.
+
+  [bold cyan]export[/bold cyan]        Export collected statistics.
+
+  [bold cyan]reset[/bold cyan]         Reset all collected data.
+
+  [bold cyan]--help[/bold cyan]        Show command help.
+
+
+[bold red]FILES[/bold red]
+
+  [bold cyan]~/KeyGlow/[/bold cyan]     Local storage containing keyboard statistics.
+
+
+[bold red]PRIVACY[/bold red]
+
+  [bold italic magenta]Disclaimer:[/bold italic magenta]
+
+  KeyGlow is not a keylogger.
+  It only stores anonymous key frequency counters.
+  It never records passwords, text, or key sequences.
+
+
+[bold red]AUTHOR[/bold red]
+
+  aeriss-dev
+
+
+[bold red]GITHUB[/bold red]
+
+  [link=https://github.com/aerissdev-dotcom]github.com/aerissdev-dotcom[/link]
+
+
+[bold red]LICENSE[/bold red]
+
+  MIT License
+
+
+[bold red]VERSION[/bold red]
+
+  0.1.0
+
+""")
+
+
+
+@app.command()
+def export(
+    format: str = typer.Argument(
+        "json",
+        help="Export format: json, csv or txt"
+    )
+):
+    """Export KeyGlow statistics."""
+
+
+    if format.lower() == "json":
+
+        file = export_json()
+
+
+    elif format.lower() == "csv":
+
+        file = export_csv()
+
+
+    elif format.lower() == "txt":
+
+        file = export_txt()
+
+
+    else:
+
+        print(
+            "[bold red]Unknown format.[/bold red] Use json, csv or txt."
+        )
+
+        raise typer.Exit()
+
+
+
+    print(
+        f"[bold cyan]Export completed:[/bold cyan] {file}"
+    )
 
 if __name__ == "__main__":
     app()
