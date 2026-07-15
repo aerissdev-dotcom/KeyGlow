@@ -111,12 +111,12 @@ def stats():
         "Usage"
     )
 
-
-    sorted_data = sorted(
-        data.items(),
-        key=lambda item: item[1],
-        reverse=True
-    )
+    def sort_key(item):
+        key, presses = item
+        is_letter = len(key) == 1 and key.isalpha()
+        return(-presses, 0 if is_letter else 1, key)
+    
+    sorted_data = sorted(data.items(), key=sort_key)
 
 
     for key, presses in sorted_data:
