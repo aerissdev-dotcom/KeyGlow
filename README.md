@@ -353,7 +353,7 @@ KeyGlow was fully tested and developed on macOS. The author does **not** guarant
 KeyGlow requires Accessibility permission.
 
 System Settings:
-Privacy & Security → Accessibility
+Privacy & Security -> Accessibility
 
 Add your Terminal application.
 
