@@ -9,6 +9,8 @@ from keyglow.storage import load_data
 
 EXPORT_DIR = Path.home() / "KeyGlow" / "Exports"
 
+def ensure_export_dir():
+    EXPORT_DIR.mkdir(parents=True, exist_ok=True)
 
 def create_export_path(extension):
     """
@@ -31,7 +33,7 @@ def create_export_path(extension):
 
 
 def export_json():
-
+    ensure_export_dir()
     data = load_data()
 
     file = create_export_path("json")
@@ -55,7 +57,7 @@ def export_json():
 
 
 def export_csv():
-
+    ensure_export_dir()
     data = load_data()
 
     file = create_export_path("csv")
@@ -92,7 +94,7 @@ def export_csv():
 
 
 def export_txt():
-
+    ensure_export_dir()
     data = load_data()
 
     file = create_export_path("txt")

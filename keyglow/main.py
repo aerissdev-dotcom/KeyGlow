@@ -97,6 +97,10 @@ def stats():
     """Show keyboard statistics."""
 
     data = load_data()
+    if not data:
+        print("[bold yellow]No keyboard statistics available yet. [/bold yellow]")
+        print("Run [bold cyan]keyglow monitor[/bold cyan] to start collecting data.")
+        raise typer.Exit()
 
     table = Table(
         title="KeyGlow Keyboard Statistics",
@@ -153,11 +157,10 @@ def reset(force: bool = typer.Option(False, "--force", "-f", help="Skip confirma
             print("[bold yellow]Reset cancelled.[/bold yellow]")
             raise typer.Exit()
         
-    reset_data()
-
-    print(
-        "[bold green]KeyGlow data reset.[/bold green]"
-        )
+    if reset_data():
+        print("[bold green]KeyGlow data reset.[/bold green]")
+    else:
+        print("[bold yellow]No KeyGlow data found.[/bold yellow]")
 
 @app.command()
 def monitor(timeout: int = typer.Option(10, "--timeout", "-t", min = 0, help="Automatically stop monitoring after X minutes of inactivity (0 = disabled)")):
@@ -297,6 +300,10 @@ def export(
 ):
     """Export KeyGlow statistics."""
 
+    data = load_data()
+    if not data:
+        print("[bold yellow]Nothing to export.[/bold yellow]")
+        raise typer.Exit()
 
     if format.lower() == "json":
 
