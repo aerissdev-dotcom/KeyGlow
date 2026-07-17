@@ -17,7 +17,7 @@ def save_data(data):
     except OSError:
         print("Failed to save KeyGlow database.")
         raise typer.Exit(code=1)
-
+        
 def load_data():
 
     if not DATA_FILE.exists():
