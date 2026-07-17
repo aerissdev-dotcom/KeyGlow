@@ -259,7 +259,7 @@ def man():
           
   [bold cyan]info[/bold cyan]          Show informations about the version, amount of stored keys, total key presses, storage file size and path to export folder.
 
-
+  [bold cyan]logo[/bold cyan]          Show a logo of KeyGlow
 [bold red]FILES[/bold red]
 
   [bold cyan]~/KeyGlow/[/bold cyan]     Local storage containing keyboard statistics.

@@ -203,6 +203,14 @@ Show informations about the version, amount of stored keys, total key presses, s
 keyglow info
 ```
 
+## logo
+
+Show a KeyGlow logo.
+
+```bash
+keyglow logo
+```
+
 # Privacy Model
 
 KeyGlow was designed with privacy as a priority.
@@ -304,6 +312,7 @@ keyglow/
     - keyboard.py
     - data.py
     - joke.py
+    - logo.py
 ```
 
 # Development

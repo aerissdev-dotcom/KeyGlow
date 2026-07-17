@@ -1,0 +1,31 @@
+[build-system]
+requires = [
+    "setuptools>=61"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "keyglow"
+version = "0.1.0"
+description = "Privacy-first keyboard usage heatmap and statistics CLI tool."
+readme = "README.md"
+requires-python = ">=3.10"
+
+authors = [
+    {name = "aeriss-dev}
+]
+
+license {text = "MIT"}
+
+dependencies = [
+    "typer",
+    "rich",
+    "pynput"
+]
+
+[project.scripts]
+keyglow = "keyglow.main:app"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
