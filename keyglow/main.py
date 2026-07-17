@@ -23,12 +23,11 @@ app = typer.Typer(
 )
 
 @app.callback(invoke_without_command=True)
-def main():
-    show_logo()
-
-@app.callback()
-def main(version: bool = typer.Option(None, "--version", "-v", callback=version_callback, is_eager=True, help="Show KeyGlow version.")):
-    pass
+def main(ctx: typer.Context, version: bool = typer.Option(None, "--version", "-v", callback=version_callback, is_eager=True, help="Show KeyGlow version.")):
+    if ctx.invoked_subcommand is None:
+        show_logo()
+        print("\nRun 'keyglow --help' to see available commands.")
+        raise typer.Exit()
 
 console = Console()
 
@@ -51,8 +50,6 @@ def get_color(presses):
 
     return "#B91C1C"
 
-
-
 def get_bar(presses):
 
     if presses == 0:
@@ -65,8 +62,6 @@ def get_bar(presses):
             20
         )
     )
-
-
 
 @app.command()
 def version():
@@ -257,7 +252,7 @@ def man():
           
   [bold cyan]joke[/bold cyan]          Show a random keyboard joke.
           
-  [bold cyan]info[/bold cyan]          Show informations about the version, amount of stored keys, total key presses, storage file size and path to export folder.
+  [bold cyan]info[/bold cyan]          Show information about KeyGlow statistics, storage and configuration. 
 
   [bold cyan]logo[/bold cyan]          Show a logo of KeyGlow
 [bold red]FILES[/bold red]
@@ -386,3 +381,4 @@ def logo():
 
 if __name__ == "__main__":
     app()
+

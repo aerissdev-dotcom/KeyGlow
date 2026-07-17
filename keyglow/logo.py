@@ -13,3 +13,4 @@ def show_logo():
     print(f"[bold cyan]{LOGO}[/bold cyan]")
     print("[dim]Privacy-first keyboard usage heatmap and statistics.[/dim]")
     print("[dim]Version 0.1.0[/dim]\n")
+

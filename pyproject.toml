@@ -4,6 +4,7 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
+
 [project]
 name = "keyglow"
 version = "0.1.0"
@@ -12,10 +13,10 @@ readme = "README.md"
 requires-python = ">=3.10"
 
 authors = [
-    {name = "aeriss-dev}
+    {name = "aeriss-dev"}
 ]
 
-license {text = "MIT"}
+license = {text = "MIT"}
 
 dependencies = [
     "typer",
@@ -23,8 +24,10 @@ dependencies = [
     "pynput"
 ]
 
+
 [project.scripts]
 keyglow = "keyglow.main:app"
+
 
 [tool.setuptools.packages.find]
 where = ["."]
