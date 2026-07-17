@@ -10,6 +10,7 @@ from keyglow.map import show_map
 from keyglow.export import export_json, export_csv, export_txt
 from keyglow.jokes import get_joke
 from pathlib import Path
+from keyglow.logo import show_logo
 
 def version_callback(value: bool):
     if value:
@@ -20,6 +21,10 @@ app = typer.Typer(
     name="keyglow",
     help="Privacy-first, useful and fun keyboard usage heatmap."
 )
+
+@app.callback(invoke_without_command=True)
+def main():
+    show_logo()
 
 @app.callback()
 def main(version: bool = typer.Option(None, "--version", "-v", callback=version_callback, is_eager=True, help="Show KeyGlow version.")):
@@ -214,6 +219,7 @@ def total():
 @app.command()
 def man():
     """Show the KeyGlow manual."""
+    show_logo()
 
     print("""
 [bold cyan]KeyGlow Manual[/bold cyan]
@@ -372,8 +378,10 @@ def info():
 
     console.print(table)
 
-# @app.command()
-# def test():
+@app.command()
+def logo():
+    """Show KeyGlow logo."""
+    show_logo()
 
 
 if __name__ == "__main__":
