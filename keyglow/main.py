@@ -14,7 +14,7 @@ from keyglow.logo import show_logo
 
 def version_callback(value: bool):
     if value:
-        print("KeyGlow v0.1.0")
+        print("KeyGlow v0.1.1")
         raise typer.Exit()
 
 app = typer.Typer(
@@ -67,7 +67,7 @@ def get_bar(presses):
 def version():
     """Show KeyGlow version."""
 
-    print("KeyGlow v0.1.0")
+    print("KeyGlow v0.1.1")
 
 
 
@@ -286,7 +286,7 @@ def man():
 
 [bold red]VERSION[/bold red]
 
-  0.1.0
+  0.1.1
 
 """)
 
@@ -365,7 +365,7 @@ def info():
     table = Table(title = "KeyGlow Information", border_style="#38BDF8")
     table.add_column("Property")
     table.add_column("Value", justify="right")
-    table.add_row("Version", "0.1.0")
+    table.add_row("Version", "0.1.1")
     table.add_row("Stored keys", str(stored_keys))
     table.add_row("Total presses", f"{total_presses:,}")
     table.add_row("Database size", database_size)

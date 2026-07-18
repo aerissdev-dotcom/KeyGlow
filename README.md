@@ -44,7 +44,7 @@ Install keyglow:
 pip install keyglow
 ```
 
-![KeyGlow Installation](screenshots/keyGlowInstall.gif)
+![KeyGlow Installation](https://raw.githubusercontent.com/aerissdev-dotcom/KeyGlow/main/screenshots/keyGlowInstallation.gif)
 
 Run:
 
@@ -78,7 +78,7 @@ Start keyboard monitoring.
 keyglow monitor
 ```
 
-![KeyGlow Installation](screenshots/keyGlowMonitor.png)
+![KeyGlow Monitor](https://raw.githubusercontent.com/aerissdev-dotcom/KeyGlow/main/screenshots/keyGlowMonitor.png)
 
 Keyglow tracks keyboard and mouse inactivity.
 
@@ -122,7 +122,7 @@ E       3120        ███████
 ENTER   430         █
 ```
 
-![KeyGlow Installation](screenshots/keyGlowStats.png)
+![KeyGlow Stats](https://raw.githubusercontent.com/aerissdev-dotcom/KeyGlow/main/screenshots/keyGlowStats.png)
 
 ## map
 
@@ -133,7 +133,7 @@ Displayed keyboard may not recreate your keyboard's alignment the same way, but 
 keyglow map
 ```
 
-![KeyGlow Installation](screenshots/keyGlowMap.png)
+![KeyGlow Map](https://raw.githubusercontent.com/aerissdev-dotcom/KeyGlow/main/screenshots/keyGlowMap.png)
 
 ## total
 
