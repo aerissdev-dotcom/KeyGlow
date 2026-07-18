@@ -77,6 +77,9 @@ Start keyboard monitoring.
 ```bash
 keyglow monitor
 ```
+
+![KeyGlow Installation](screenshots/keyGlowMonitor.png)
+
 Keyglow tracks keyboard and mouse inactivity.
 
 Default inactivity timeout:
@@ -119,6 +122,8 @@ E       3120        ███████
 ENTER   430         █
 ```
 
+![KeyGlow Installation](screenshots/keyGlowStats.png)
+
 ## map
 
 Display keyboard primitive heatmap.
@@ -127,6 +132,8 @@ Displayed keyboard may not recreate your keyboard's alignment the same way, but 
 ```bash
 keyglow map
 ```
+
+![KeyGlow Installation](screenshots/keyGlowMap.png)
 
 ## total
 
