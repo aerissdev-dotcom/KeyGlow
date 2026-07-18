@@ -44,7 +44,7 @@ Install keyglow:
 pip install keyglow
 ```
 
-![KeyGlow Installation](https://raw.githubusercontent.com/aerissdev-dotcom/KeyGlow/main/screenshots/keyGlowInstallation.gif)
+![KeyGlow Installation](https://raw.githubusercontent.com/aerissdev-dotcom/KeyGlow/main/screenshots/keyGlowInstall.gif)
 
 Run:
 
