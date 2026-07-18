@@ -357,7 +357,7 @@ https://github.com/aerissdev-dotcom
 
 # Version
 
-0.1.0
+0.1.2
 
 # Testing and developing OS:
 
