@@ -43,6 +43,9 @@ Install keyglow:
 ```bash
 pip install keyglow
 ```
+
+![KeyGlow Installation](screenshots/keyGlowInstall.gif)
+
 Run:
 
 ```bash
